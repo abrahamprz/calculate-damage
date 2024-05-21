@@ -33,11 +33,15 @@ class DamageCalculator:
         Raises:
             ValueError: If either damage or speed is negative, or if time is not a valid time unit.
         """
+        
+        # The user could input the time in capital letters, so we convert it to lowercase
+        time = time.lower()
+        
         if damage < 0 or speed < 0:
             raise ValueError("Damage and speed must be non-negative.")
         
         if time not in self.time_and_seconds:
-            raise ValueError(f"'{time}' is not a valid time unit.")
+            raise ValueError(f"'{time}' is not a valid time unit. \nValid time units are: {', '.join(self.time_and_seconds.keys())}")
         
         return damage * speed * self.time_and_seconds[time]
         
