@@ -17,7 +17,7 @@ class DamageCalculator:
             "year": 31536000
         }
     
-    def damage(self, damage: int, speed: int, time: str) -> int | str:
+    def damage(self, damage: int, speed: int, time: str) -> int:
         """
         This method calculates the total damage dealt based on the amount of damage per second,
         the time the damage is dealt, and the time unit of the speed.
@@ -28,10 +28,16 @@ class DamageCalculator:
             time (str): The time unit of the speed.
 
         Returns:
-            int | str: The total damage dealt. Returns "Invalid" if either damage or speed is negative.
+            int: The total damage dealt.
+
+        Raises:
+            ValueError: If either damage or speed is negative, or if time is not a valid time unit.
         """
         if damage < 0 or speed < 0:
-            return "Invalid"
+            raise ValueError("Damage and speed must be non-negative.")
+        
+        if time not in self.time_and_seconds:
+            raise ValueError(f"'{time}' is not a valid time unit.")
         
         return damage * speed * self.time_and_seconds[time]
         
