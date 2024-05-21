@@ -24,7 +24,7 @@ class DamageCalculator:
 
         Args:
             damage (int): The amount of damage per second.
-            speed (int): The time the damage is dealt.
+            speed (int): The speed at which the damage is dealt.
             time (str): The time unit of the speed.
 
         Returns:
